@@ -20,5 +20,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path("polls/", include("polls.urls")),
+    path("store/", include("store.urls")),
     path("admin/", admin.site.urls),
 ]

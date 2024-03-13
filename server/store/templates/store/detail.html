@@ -1,0 +1,15 @@
+<h1>{{ product.title }}</h1>
+<p>{{ product.description }}</p>
+<img src="{{product.img_url}}"/>
+
+<form >
+    <fieldset>
+        <legend><h1> Select Size </h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for size in product.size_set.all %}
+            <input type="radio" name="size" id="size{{ forloop.counter }}" value="{{ size.id }}">
+            <label for="size{{ forloop.counter }}">{{ size.length }}"x{{ size.width }}" ${{ size.price }}</label><br>
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Add to cart">
+</form>
