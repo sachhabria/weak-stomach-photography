@@ -5,7 +5,7 @@ from django.views import generic
 from .models import Product
 
 class IndexView(generic.ListView):
-    template_name = "products/index.html"
+    template_name = "store/index.html"
     context_object_name = "latest_products"
 
     def get_queryset(self):
@@ -15,5 +15,5 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Product
-    template_name = "products/detail.html"
+    template_name = "store/detail.html"
     

@@ -1,15 +1,17 @@
 <h1>{{ product.title }}</h1>
 <p>{{ product.description }}</p>
-<img src="{{product.img_url}}"/>
+<img src="{{product.image.url}}"/>
 
-<form >
+<form action="{% url 'cart:add_to_cart' %}" method="post">
+    {% csrf_token %}
     <fieldset>
-        <legend><h1> Select Size </h1></legend>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        {% for size in product.size_set.all %}
-            <input type="radio" name="size" id="size{{ forloop.counter }}" value="{{ size.id }}">
-            <label for="size{{ forloop.counter }}">{{ size.length }}"x{{ size.width }}" ${{ size.price }}</label><br>
+        <legend><h1>Select a size</h1></legend>
+        {% for variant in product.variant_set.all %}
+            <input type="radio" name="variant" id="variant{{ forloop.counter }}" value="{{ variant.id }}">
+            <label for="variant{{ forloop.counter }}">{{ variant.length }}"x{{ variant.width }}"</label><br>
         {% endfor %}
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity">
     </fieldset>
     <input type="submit" value="Add to cart">
 </form>
